@@ -1,23 +1,11 @@
 import Router from "next/router";
 import React from "react";
 import { useState } from "react";
-import { signOut, useSession } from "next-auth/react";
 import { cn } from "utils/tailwind";
 import LoadingDots from "../shared/icons/loadingDots";
 
 const HeaderIsland: React.FC = () => {
-  const { data: session, status } = useSession();
-
   const [darkMode, toggleDarkMode] = useState(true);
-
-  const _handleClick = (e) => {
-    e.preventDefault();
-    if (session?.user?.email) {
-      signOut();
-    } else {
-      Router.push("/login");
-    }
-  };
 
   const _handleModeClick = (e) => {
     e.preventDefault();
@@ -49,20 +37,14 @@ const HeaderIsland: React.FC = () => {
         >
           <div className={cn("flex items-center")}>
             <label className={cn("text-sm")}>Hello,&nbsp;</label>
-            {status == "loading" ? (
-              <LoadingDots />
-            ) : (
               <label
                 className={cn(
                   "text-sm",
-                  session?.user?.email && "underline decoration-dashed",
+                  "underline decoration-dashed",
                 )}
               >
-                {session?.user?.email
-                  ? session?.user?.email.split("@")[0]
-                  : "stranger"}
+                stranger
               </label>
-            )}
           </div>
           <button
             aria-label="Toggle Dark Mode"
@@ -105,30 +87,6 @@ const HeaderIsland: React.FC = () => {
                   d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                 ></path>
               </svg>
-            )}
-          </button>
-        </div>
-
-        <div
-          className={cn("relative inline-block", "border-l border-slate-900")}
-        >
-          <button
-            type="button"
-            className={cn(
-              "h-10 w-16 justify-center",
-              "px-2 py-2",
-              "text-sm font-medium text-gray-900",
-              "hover:bg-gray-50",
-              "focus:outline-none",
-            )}
-            aria-expanded="true"
-            aria-haspopup="true"
-            onClick={_handleClick}
-          >
-            {status == "loading" ? (
-              <LoadingDots />
-            ) : (
-              <>{session?.user?.email ? "Signout" : "Login"}</>
             )}
           </button>
         </div>
