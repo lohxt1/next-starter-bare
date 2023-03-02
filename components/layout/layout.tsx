@@ -8,7 +8,12 @@ type Props = {
 
 const Layout: React.FC<Props> = (props) => (
   <div>
-    <div className={cn("h-screen")}>
+    <div
+      className={cn(
+        "h-screen",
+        "bg-white text-black dark:bg-black dark:text-white",
+      )}
+    >
       <HeaderIsland />
       {props.children}
     </div>

@@ -1,15 +1,18 @@
 import Router from "next/router";
 import React from "react";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import { cn } from "utils/tailwind";
 import LoadingDots from "../shared/icons/loadingDots";
 
 const HeaderIsland: React.FC = () => {
-  const [darkMode, toggleDarkMode] = useState(true);
+  const { theme, setTheme } = useTheme();
+
+  console.log(theme);
 
   const _handleModeClick = (e) => {
     e.preventDefault();
-    toggleDarkMode((_) => !_);
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
@@ -26,6 +29,7 @@ const HeaderIsland: React.FC = () => {
           // "md:w-1/2",
           "rounded-full border border-slate-900",
           "px-5",
+          "dark:border-white",
         )}
       >
         <div
@@ -37,14 +41,9 @@ const HeaderIsland: React.FC = () => {
         >
           <div className={cn("flex items-center")}>
             <label className={cn("text-sm")}>Hello,&nbsp;</label>
-              <label
-                className={cn(
-                  "text-sm",
-                  "underline decoration-dashed",
-                )}
-              >
-                stranger
-              </label>
+            <label className={cn("text-sm", "underline decoration-dashed")}>
+              stranger
+            </label>
           </div>
           <button
             aria-label="Toggle Dark Mode"
@@ -57,13 +56,13 @@ const HeaderIsland: React.FC = () => {
             )}
             onClick={_handleModeClick}
           >
-            {!darkMode ? (
+            {theme != "dark" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                className="h-5 w-5 text-gray-800"
+                className="h-5 w-5"
               >
                 <path
                   stroke-linecap="round"
@@ -78,7 +77,7 @@ const HeaderIsland: React.FC = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                className="h-5 w-5 text-gray-800"
+                className="h-5 w-5"
               >
                 <path
                   stroke-linecap="round"
@@ -97,13 +96,6 @@ const HeaderIsland: React.FC = () => {
           align-items: center;
         }
       `}</style>
-      <style jsx global>
-        {`
-          html {
-            filter: invert(${darkMode ? 1 : 0});
-          }
-        `}
-      </style>
     </nav>
   );
 };
