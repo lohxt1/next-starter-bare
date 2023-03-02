@@ -2,7 +2,7 @@
 
 <div align="center" >
 <h1>
-NextJS Starter Template with Passwordless Auth
+NextJS Starter Bare
 </h1>
   <a href="https://github.com/trpc/trpc/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/trpc/trpc" />
@@ -11,22 +11,15 @@ NextJS Starter Template with Passwordless Auth
     <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40lohxt&style=social&url=https%3A%2F%2Ftwitter.com%2Flohxt" />
   </a>
 <p align="center" style="font-weight:400;font-size:20px;">
-  A barebones NextJS, Tailwind, Prisma starter template which uses magic-links for paswordless auth.
+  A barebones NextJS, Tailwind starter template with helper utils.
 </p>
 </div>
-
-## About The Project
-
-"pullTweets" is a user-friendly NextJS application that allows individuals to effortlessly search and retrieve tweets from any public Twitter account. The app facilitates exploring, examining tweet statistics, patterns and also offers the option to save the tweets for offline access.
 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) – `framework`
 - [Typescript](https://www.typescriptlang.org/) – `language`
 - [Tailwind](https://tailwindcss.com/) – `CSS`
-- [Prisma](https://prisma.io/) – `ORM`
-- [Postgresql](https://railway.app/) – `database`
-- [NextAuth.js](https://next-auth.js.org/) – `auth`
 - [Vercel](https://vercel.com/) – `hosting`
 
 ## Running the code locally
@@ -35,24 +28,12 @@ To run the code locally, open _Terminal_ in your `projects` folder and take the 
 
 ```bash
 # STEP 1: Get sources from GitHub
-$ git clone https://github.com/lohxt1/pull-tweets.git
-$ cd pull-tweets
+$ git clone https://github.com/lohxt1/next-starter-bare.git
+$ cd next-starter-bare
 
 # STEP 2: Install the requirements
 $ npm install
 
-# STEP 3: Setting up Prisma
-
-# Modify the schema if required and validate it by running
-$ npx prisma validate
-
-# Generate Prisma client
-$ npx prisma generate
-
-# Push the schema changes
-# make sure you have the right DATABASE_URL in .env file
-$ npx prisma db push
-
-# STEP 4: Running the app in dev mode
+# STEP 3: Running the app in dev mode
 $ npm run dev
 ```
