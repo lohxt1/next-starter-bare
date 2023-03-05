@@ -1,18 +1,14 @@
-import Router from "next/router";
 import React from "react";
-import { useState } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "utils/tailwind";
-import LoadingDots from "../shared/icons/loadingDots";
 
 const HeaderIsland: React.FC = () => {
-  const { theme, setTheme } = useTheme();
-
-  console.log(theme);
+  const { theme, setTheme, systemTheme } = useTheme();
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   const _handleModeClick = (e) => {
     e.preventDefault();
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(currentTheme === "dark" ? "light" : "dark");
   };
 
   return (
@@ -56,7 +52,7 @@ const HeaderIsland: React.FC = () => {
             )}
             onClick={_handleModeClick}
           >
-            {theme != "dark" ? (
+            {currentTheme != "dark" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
